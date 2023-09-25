@@ -1,4 +1,5 @@
-import { React, useState } from 'react';
+import { useEffect } from 'react';
+import React from 'react';
 import { showFormattedDate } from '../utils';
 import NotesCard from './NotesCardComponents/NotesCard';
 
