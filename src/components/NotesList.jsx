@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import React from 'react';
 import { showFormattedDate } from '../utils';
 import NotesCard from './NotesCardComponents/NotesCard';
@@ -13,7 +12,7 @@ const NotesList = ({ dataSets, deleteFunction }) => {
   return (
     <>
       {newDatas.map((data) => (
-        <NotesCard key={data.id} deleteFunction={deleteFunction} {...data} />
+        <NotesCard key={data.id} deleteFunction={deleteFunction} archived={data.archived} {...data} />
       ))}
     </>
   );

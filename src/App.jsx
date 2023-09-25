@@ -9,23 +9,17 @@ import { getInitialData } from './utils';
 function App() {
   const [datas, setDatas] = useState(getInitialData);
   const [searchQuery, setSearchQuery] = useState('');
+  const [filteredNotes, setFilteredNotes] = useState([]);
 
   useEffect(() => {
-    console.log(searchQuery);
-    console.log(datas);
+    const filtered = datas.filter((data) => data.title.toLowerCase().includes(searchQuery));
+    setFilteredNotes(filtered);
   }, [searchQuery, datas]);
 
   const valueSearch = (e) => {
     e.preventDefault();
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
-
-    if (query === '') {
-      setDatas(getInitialData);
-    } else {
-      // Filter the data based on the search query
-      setDatas((prevData) => prevData.filter((data) => data.title.toLowerCase().includes(searchQuery)));
-    }
   };
 
   const onSubmitNotes = ({ title, body }) => {
@@ -52,7 +46,7 @@ function App() {
       <div>
         <Header onSearchTitle={valueSearch} />
         <AddNotesSection AddNotesHandler={onSubmitNotes} />
-        <NotesSection dataSets={datas} deleteFunction={deletedNotes} />
+        <NotesSection dataSets={filteredNotes} deleteFunction={deletedNotes} />
       </div>
     </>
   );
