@@ -11,11 +11,6 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredNotes, setFilteredNotes] = useState([]);
 
-  useEffect(() => {
-    const filtered = datas.filter((data) => data.title.toLowerCase().includes(searchQuery));
-    setFilteredNotes(filtered);
-  }, [searchQuery, datas]);
-
   const valueSearch = (e) => {
     e.preventDefault();
     const query = e.target.value.toLowerCase();
@@ -36,17 +31,38 @@ function App() {
   };
 
   // FUNCTION TO DELETE NOTES AND SET THE DATAS
-  const deletedNotes = (id) => {
+  const onDeletedNotes = (id) => {
+    // MENGHAPUS DATA BERDASARKAN ID YANG SAMA
     const updatedNotes = datas.filter((data) => data.id !== id);
     setDatas(updatedNotes);
   };
+
+  const onArchivedNotes = (id) => {
+    const updatedNotes = datas.map((data) => {
+      // MENGUBAH DATA.ARCHIVED MENJADI TRUE/FALSE
+      if (data.id === id) {
+        return { ...data, archived: !data.archived };
+      }
+      // MENGEMBALIKAN SEMUA DATA
+      return data;
+    });
+    setDatas(updatedNotes);
+  };
+
+  // LANJUTAN UNTUK SEARCH
+  useEffect(() => {
+    const filtered = datas.filter((data) => data.title.toLowerCase().includes(searchQuery));
+    setFilteredNotes(filtered);
+  }, [searchQuery, datas]);
+
+  const archivedData = datas.filter((data) => data.archived === true);
 
   return (
     <>
       <div>
         <Header onSearchTitle={valueSearch} />
         <AddNotesSection AddNotesHandler={onSubmitNotes} />
-        <NotesSection dataSets={filteredNotes} deleteFunction={deletedNotes} />
+        <NotesSection dataSets={filteredNotes} deleteFunction={onDeletedNotes} archiveFunction={onArchivedNotes} archivedData={archivedData} />
       </div>
     </>
   );

@@ -1,11 +1,11 @@
 import React from 'react';
 import NotesList from '../components/NotesList';
 
-const NotesSection = ({ dataSets, deleteFunction }) => {
+const NotesSection = ({ dataSets, deleteFunction, archiveFunction, archivedData }) => {
   return (
     <>
-      <div className="mx-auto flex flex-wrap justify-center mt-16 ">
-        <NotesList dataSets={dataSets} deleteFunction={deleteFunction} />
+      <div>
+        <NotesList dataSets={dataSets} deleteFunction={deleteFunction} archiveFunction={archiveFunction} archivedData={archivedData} />
       </div>
     </>
   );

@@ -4,12 +4,13 @@ import SearchNotes from '../components/HeaderComponents/SearchNotes';
 const Header = ({ onSearchTitle }) => {
   return (
     <div className="p-5">
-      <p className="text-3xl font-bold">Notes</p>
-      <div className="right-0">
-        <SearchNotes onSearchTitle={onSearchTitle} />
+      <div className="flex">
+        <p className="text-3xl font-bold">Notes</p>
+        <div className="ml-auto">
+          <SearchNotes onSearchTitle={onSearchTitle} />
+        </div>
       </div>
-
-      <hr />
+      <hr className="mt-3" />
     </div>
   );
 };
