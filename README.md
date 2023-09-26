@@ -1,5 +1,13 @@
 # React + Vite
 
+-HOW TO RUN-
+
+GO TO TERMINAL:
+
+1. npm install
+2. npm install -D tailwindcss postcss autoprefixer
+3. npx tailwindcss init -p
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
